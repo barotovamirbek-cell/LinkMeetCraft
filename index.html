@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkMeetCraft — Донат Магазин</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;600;800&display=family" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f4f7f5;
+            --main-green: #5c8f52;
+            --main-green-hover: #4a7541;
+            --card-bg: #ffffff;
+            --text-dark: #2d382c;
+            --text-muted: #6b7c69;
+            --accent-clay: #b87355;
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Comfortaa', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Шапка сайта */
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(92, 143, 82, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--main-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-clay);
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: 2px solid transparent;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--main-green);
+            background-color: rgba(92, 143, 82, 0.05);
+        }
+
+        .tab-btn.active {
+            background-color: var(--main-green);
+            color: white;
+        }
+
+        /* Контентная зона */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* Вкладки */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Сетка Донатов */
+        .donation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+            border: 2px solid rgba(92, 143, 82, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(92, 143, 82, 0.12);
+        }
+
+        /* Мягкие цвета для привилегий */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+        }
+        .p-lite::before { background-color: #a3c1ad; }
+        .p-premium::before { background-color: #7bc0a3; }
+        .p-creator::before { background-color: #f1a3a3; }
+        .p-elite::before { background-color: #6fb1e4; }
+        .p-deluxe::before { background-color: #b39ddb; }
+        .p-nexus::before { background-color: #ffb74d; }
+
+        .card-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent-clay);
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .features-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--main-green);
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            display: block;
+            text-align: center;
+            background-color: var(--main-green);
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: background-color 0.2s ease;
+            margin-top: auto;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--main-green-hover);
+        }
+
+        /* Инфо-блок "Скоро будет больше" */
+        .coming-soon-banner {
+            background-color: rgba(92, 143, 82, 0.08);
+            border: 2px dashed var(--main-green);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+            font-weight: 700;
+            color: var(--main-green-hover);
+        }
+
+        /* Сетка Китов */
+        .kits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .kit-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border: 2px solid rgba(92, 143, 82, 0.1);
+            text-align: center;
+        }
+
+        .kit-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .kit-img-wrapper {
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            width: 100%;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .kit-img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .kit-card:hover .kit-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #2d382c;
+            color: #e2e8e1;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            .page-title h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">LinkMeet<span>Craft</span></div>
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchTab('donates')">Привилегии</button>
+                <button class="tab-btn" onclick="switchTab('kits')">Наборы (Киты)</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        
+        <!-- ВКЛАДКА: ПРИВИЛЕГИИ -->
+        <div id="donates" class="tab-content active">
+            <div class="page-title">
+                <h1>Выбор привилегии</h1>
+                <p>Поддержи сервер и получи приятные бонусы для комфортного SMP-выживания</p>
+            </div>
+
+            <div class="donation-grid">
+                <!-- LITE -->
+                <div class="card p-lite">
+                    <div class="card-header">
+                        <h2>Lite</h2>
+                        <div class="price">99 ₽</div>
+                    </div>
+                    <ul class="features-list">
+                        <li>Возврат на место смерти: <b>/back</b></li>
+                        <li>Уход в AFK в любой момент: <b>/afk</b></li>
+                        <li>Смена скина прямо в игре: <b>/skin</b></li>
+                        <li>Уникальный стартовый кит <b>/kit lite</b></li>
+                    </ul>
+                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Lite" class="buy-btn" target="_blank">Купить статус</a>
+                </div>
+
+                <!-- PREMIUM -->
+                <div class="card p-premium">
+                    <div class="card-header">
+                        <h2>Premium</h2>
+                        <div class="price">249 ₽</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i>Включает все права Lite</i></li>
+                        <li>До <b>20 слотов</b> на аукционе одновременно</li>
+                        <li>Добыча спавнеров <b>Шелковым касанием</b></li>
+                        <li>Виртуальный верстак: <b>/wb</b></li>
+                        <li>Быстро потушить себя: <b>/ext</b></li>
+                        <li>Полезный набор ресурсов <b>/kit premium</b></li>
+                    </ul>
+                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Premium" class="buy-btn" target="_blank">Купить статус</a>
+                </div>
+
+                <!-- CREATOR -->
+                <div class="card p-creator">
+                    <div class="card-header">
+                        <h2>Creator</h2>
+                        <div class="price">350 ₽</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i>Медиа-статус для контента</i></li>
+                        <li>Скрытие реального ника: <b>/nick</b></li>
+                        <li>Цветной и магический чат/ЛС</li>
+                        <li>Загрузка картинок на рамки: <b>/imageframe</b></li>
+                        <li>Просмотр инвентарей игроков: <b>/invsee</b></li>
+                        <li>Уникальный медиа-набор <b>/kit creator</b></li>
+                    </ul>
+                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Creator" class="buy-btn" target="_blank">Купить статус</a>
+                </div>
+
+                <!-- ELITE -->
+                <div class="card p-elite">
+                    <div class="card-header">
+                        <h2>Elite</h2>
+                        <div class="price">499 ₽</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i>Включает все права Premium</i></li>
+                        <li><b>Режим полета: /fly</b> (выключен в ПВП)</li>
+                        <li>Увеличение лимита до <b>8 приватов</b></li>
+                        <li>До 30 слотов на аукционе</li>
+                        <li>Утоление голода командой: <b>/feed</b></li>
+                        <li>Элитный набор ресурсов <b>/kit elite</b></li>
+                    </ul>
+                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Elite" class="buy-btn" target="_blank">Купить статус</a>
+                </div>
+
+                <!-- DELUXE -->
+                <div class="card p-deluxe">
+                    <div class="card-header">
+                        <h2>Deluxe</h2>
+                        <div class="price">799 ₽</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i>Включает все права Elite</i></li>
+                        <li>Виртуальный эндер-сундук: <b>/ec</b></li>
+                        <li>Исцеление себя на месте: <b>/heal</b></li>
+                        <li>Сжатие ресурсов в блоки: <b>/condense</b></li>
+                        <li>Увеличение лимита до <b>12 приватов</b></li>
+                        <li>Крафт и использование <b>легендарных булав</b></li>
+                        <li>Топовый набор <b>/kit deluxe</b></li>
+                    </ul>
+                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Deluxe" class="buy-btn" target="_blank">Купить статус</a>
+                </div>
+
+                <!-- NEXUS -->
+                <div class="card p-nexus">
+                    <div class="card-header">
+                        <h2>Nexus</h2>
+                        <div class="price">1499 ₽</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i>Максимальный статус сервера</i></li>
+                        <li><b>СОХРАНЕНИЕ ИНВЕНТАРЯ И ОПЫТА ПРИ СМЕРТИ</b></li>
+                        <li>Бесплатная починка вещей: <b>/repair all</b></li>
+                        <li>Бустер опыта навыков AuraSkills <b>+20%</b></li>
+                        <li>Увеличение лимита до <b>20 приватов</b></li>
+                        <li>Полный обход кулдаунов на /feed и /heal</li>
+                        <li>Самый жирный набор сервера <b>/kit nexus</b></li>
+                    </ul>
+                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Nexus" class="buy-btn" target="_blank">Купить статус</a>
+                </div>
+            </div>
+
+            <div class="coming-soon-banner">
+                🪵 Наш сервер постоянно развивается — очень скоро здесь появится еще больше крутых возможностей и фишек!
+            </div>
+        </div>
+
+        <!-- ВКЛАДКА: КИТЫ -->
+        <div id="kits" class="tab-content">
+            <div class="page-title">
+                <h1>Содержимое Кит-Наборов</h1>
+                <p>Здесь вы можете наглядно посмотреть, какой лут выдается вместе с привилегиями</p>
+            </div>
+
+            <div class="kits-grid">
+                <!-- KIT LITE -->
+                <div class="kit-card">
+                    <h3>Набор: Lite</h3>
+                    <div class="kit-img-wrapper">
+                        <img src="kits/lite_kit.png" alt="Скриншот набора Lite" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Lite'">
+                    </div>
+                </div>
+
+                <!-- KIT PREMIUM -->
+                <div class="kit-card">
+                    <h3>Набор: Premium</h3>
+                    <div class="kit-img-wrapper">
+                        <img src="kits/premium_kit.png" alt="Скриншот набора Premium" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Premium'">
+                    </div>
+                </div>
+
+                <!-- KIT CREATOR -->
+                <div class="kit-card">
+                    <h3>Набор: Creator</h3>
+                    <div class="kit-img-wrapper">
+                        <img src="kits/creator_kit.png" alt="Скриншот набора Creator" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Creator'">
+                    </div>
+                </div>
+
+                <!-- KIT ELITE -->
+                <div class="kit-card">
+                    <h3>Набор: Elite</h3>
+                    <div class="kit-img-wrapper">
+                        <img src="kits/elite_kit.png" alt="Скриншот набора Elite" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Elite'">
+                    </div>
+                </div>
+
+                <!-- KIT DELUXE -->
+                <div class="kit-card">
+                    <h3>Набор: Deluxe</h3>
+                    <div class="kit-img-wrapper">
+                        <img src="kits/deluxe_kit.png" alt="Скриншот набора Deluxe" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Deluxe'">
+                    </div>
+                </div>
+
+                <!-- KIT NEXUS -->
+                <div class="kit-card">
+                    <h3>Набор: Nexus</h3>
+                    <div class="kit-img-wrapper">
+                        <img src="kits/nexus_kit.png" alt="Скриншот набора Nexus" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Nexus'">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 LinkMeetCraft SMP. Все права защищены. Сайт разработан для удобного взаимодействия с игроками.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            // Скрываем все вкладки
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Деактивируем все кнопки
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Включаем нужную вкладку и кнопку
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
