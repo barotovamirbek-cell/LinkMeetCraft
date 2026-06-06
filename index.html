@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMP Магазин Привилегий</title>
+    <title>LinkMeetCraft — Магазин Привилегий</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -206,7 +206,7 @@
             display: block;
             text-align: center;
             background-color: var(--main-green);
-            color: white;
+            color: white !important;
             text-decoration: none;
             padding: 14px;
             border-radius: 12px;
@@ -214,9 +214,10 @@
             font-size: 16px;
             transition: background-color 0.2s ease;
             margin-top: auto;
-            cursor: pointer;
             border: none;
             width: 100%;
+            position: relative;
+            z-index: 10;
         }
 
         .buy-btn:hover {
@@ -302,10 +303,10 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">SMP<span>Craft</span></div>
+            <div class="logo">LinkMeet<span>Craft</span></div>
             <div class="nav-tabs">
-                <button class="tab-btn active" onclick="switchTab('donates')">Привилегии</button>
-                <button class="tab-btn" onclick="switchTab('kits')">Наборы (Киты)</button>
+                <button id="btn-donates" class="tab-btn active" onclick="switchTab('donates')">Привилегии</button>
+                <button id="btn-kits" class="tab-btn" onclick="switchTab('kits')">Наборы (Киты)</button>
             </div>
         </div>
     </header>
@@ -315,195 +316,3 @@
         <div id="donates" class="tab-content active">
             <div class="page-title">
                 <h1>Выбор привилегии</h1>
-                <p>Поддержи сервер и получи приятные бонусы для комфортного SMP-выживания</p>
-            </div>
-
-            <div class="donation-grid">
-                <div class="card p-lite">
-                    <div class="card-header">
-                        <h2>Lite</h2>
-                        <div class="price">99 ₽</div>
-                    </div>
-                    <ul class="features-list">
-                        <li>Возврат на место смерти: <b>/back</b></li>
-                        <li>Уход в AFK в любой момент: <b>/afk</b></li>
-                        <li>Смена скина прямо в игре: <b>/skin</b></li>
-                        <li>Уникальный стартовый кит <b>/kit lite</b></li>
-                    </ul>
-                    <button onclick="buyPrivilege('Lite')" class="buy-btn">Купить статус</button>
-                </div>
-
-                <div class="card p-premium">
-                    <div class="card-header">
-                        <h2>Premium</h2>
-                        <div class="price">249 ₽</div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i>Включает все права Lite</i></li>
-                        <li>До <b>20 слотов</b> на аукционе одновременно</li>
-                        <li>Добыча спавнеров <b>Шелковым касанием</b></li>
-                        <li>Виртуальный верстак: <b>/wb</b></li>
-                        <li>Быстро потушить себя: <b>/ext</b></li>
-                        <li>Полезный набор ресурсов <b>/kit premium</b></li>
-                    </ul>
-                    <button onclick="buyPrivilege('Premium')" class="buy-btn">Купить статус</button>
-                </div>
-
-                <div class="card p-creator">
-                    <div class="card-header">
-                        <h2>Creator</h2>
-                        <div class="price">350 ₽</div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i>Медиа-статус для контента</i></li>
-                        <li>Скрытие реального ника: <b>/nick</b></li>
-                        <li>Цветной и магический чат/ЛС</li>
-                        <li>Загрузка картинок на рамки: <b>/imageframe</b></li>
-                        <li>Просмотр инвентарей игроков: <b>/invsee</b></li>
-                        <li>Уникальный медиа-набор <b>/kit creator</b></li>
-                    </ul>
-                    <button onclick="buyPrivilege('Creator')" class="buy-btn">Купить статус</button>
-                </div>
-
-                <div class="card p-elite">
-                    <div class="card-header">
-                        <h2>Elite</h2>
-                        <div class="price">499 ₽</div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i>Включает все права Premium</i></li>
-                        <li><b>Режим полета: /fly</b> (выключен в ПВП)</li>
-                        <li>Увеличение лимита до <b>8 приватов</b></li>
-                        <li>До 30 слотов на аукционе</li>
-                        <li>Утоление голода командой: <b>/feed</b></li>
-                        <li>Элитный набор ресурсов <b>/kit elite</b></li>
-                    </ul>
-                    <button onclick="buyPrivilege('Elite')" class="buy-btn">Купить статус</button>
-                </div>
-
-                <div class="card p-deluxe">
-                    <div class="card-header">
-                        <h2>Deluxe</h2>
-                        <div class="price">799 ₽</div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i>Включает все права Elite</i></li>
-                        <li>Виртуальный эндер-сундук: <b>/ec</b></li>
-                        <li>Исцеление себя на месте: <b>/heal</b></li>
-                        <li>Сжатие ресурсов в блоки: <b>/condense</b></li>
-                        <li>Увеличение лимита до <b>12 приватов</b></li>
-                        <li>Крафт и использование <b>легендарных булав</b></li>
-                        <li>Топовый набор <b>/kit deluxe</b></li>
-                    </ul>
-                    <button onclick="buyPrivilege('Deluxe')" class="buy-btn">Купить статус</button>
-                </div>
-
-                <div class="card p-nexus">
-                    <div class="card-header">
-                        <h2>Nexus</h2>
-                        <div class="price">1499 ₽</div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i>Максимальный статус сервера</i></li>
-                        <li><b>СОХРАНЕНИЕ ИНВЕНТАРЯ И ОПЫТА ПРИ СМЕРТИ</b></li>
-                        <li>Бесплатная починка вещей: <b>/repair all</b></li>
-                        <li>Бустер опыта навыков AuraSkills <b>+20%</b></li>
-                        <li>Увеличение лимита до <b>20 приватов</b></li>
-                        <li>Полный обход кулдаунов на /feed и /heal</li>
-                        <li>Самый жирный набор сервера <b>/kit nexus</b></li>
-                    </ul>
-                    <button onclick="buyPrivilege('Nexus')" class="buy-btn">Купить статус</button>
-                </div>
-            </div>
-
-            <div class="coming-soon-banner">
-                🪵 Наш сервер постоянно развивается — скоро будет добавлено ещё больше крутых возможностей и привилегий!
-            </div>
-        </div>
-
-        <div id="kits" class="tab-content">
-            <div class="page-title">
-                <h1>Содержимое Кит-Наборов</h1>
-                <p>Здесь вы можете наглядно посмотреть, какой лут выдается вместе с привилегиями</p>
-            </div>
-
-            <div class="kits-grid">
-                <div class="kit-card">
-                    <h3>Набор: Lite</h3>
-                    <div class="kit-img-wrapper">
-                        <img src="kits/lite_kit.png" alt="Скриншот набора Lite" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Lite'">
-                    </div>
-                </div>
-
-                <div class="kit-card">
-                    <h3>Набор: Premium</h3>
-                    <div class="kit-img-wrapper">
-                        <img src="kits/premium_kit.png" alt="Скриншот набора Premium" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Premium'">
-                    </div>
-                </div>
-
-                <div class="kit-card">
-                    <h3>Набор: Creator</h3>
-                    <div class="kit-img-wrapper">
-                        <img src="kits/creator_kit.png" alt="Скриншот набора Creator" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Creator'">
-                    </div>
-                </div>
-
-                <div class="kit-card">
-                    <h3>Набор: Elite</h3>
-                    <div class="kit-img-wrapper">
-                        <img src="kits/elite_kit.png" alt="Скриншот набора Elite" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Elite'">
-                    </div>
-                </div>
-
-                <div class="kit-card">
-                    <h3>Набор: Deluxe</h3>
-                    <div class="kit-img-wrapper">
-                        <img src="kits/deluxe_kit.png" alt="Скриншот набора Deluxe" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Deluxe'">
-                    </div>
-                </div>
-
-                <div class="kit-card">
-                    <h3>Набор: Nexus</h3>
-                    <div class="kit-img-wrapper">
-                        <img src="kits/nexus_kit.png" alt="Скриншот набора Nexus" onerror="this.src='https://placehold.co/400x250/e2e8e1/2d382c?text=Лут+Кита+Nexus'">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <footer>
-        <p>© 2026 SMP Сервер. Все права защищены.</p>
-    </footer>
-
-    <script>
-        function switchTab(tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-
-        function buyPrivilege(name) {
-            const userId = "8372556195";
-            const text = `Привет! Я бы хотел купить привилегию ${name}`;
-            
-            // Копируем готовый текст в буфер обмена, чтобы игрок мог сразу нажать CTRL+V
-            navigator.clipboard.writeText(text).then(() => {
-                alert(`Текст заказа скопирован в буфер обмена! Сейчас откроется чат с создателем — просто вставь сообщение.`);
-                // Перенаправляем по официальному протоколу прямо в личку к ID
-                window.location.href = `tg://openmessage?user_id=${userId}`;
-            }).catch(() => {
-                // Если буфер заблокирован, просто открываем ТГ
-                window.location.href = `tg://openmessage?user_id=${userId}`;
-            });
-        }
-    </script>
-</body>
-</html>
