@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkMeetCraft — Донат Магазин</title>
+    <title>SMP Магазин Привилегий</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;600;800&display=family" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #f4f7f5;
@@ -59,9 +59,6 @@
             font-weight: 800;
             font-size: 24px;
             color: var(--main-green);
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .logo span {
@@ -156,7 +153,6 @@
             box-shadow: 0 12px 40px rgba(92, 143, 82, 0.12);
         }
 
-        /* Мягкие цвета для привилегий */
         .card::before {
             content: '';
             position: absolute;
@@ -218,6 +214,9 @@
             font-size: 16px;
             transition: background-color 0.2s ease;
             margin-top: auto;
+            cursor: pointer;
+            border: none;
+            width: 100%;
         }
 
         .buy-btn:hover {
@@ -280,7 +279,6 @@
             transform: scale(1.05);
         }
 
-        /* Подвал */
         footer {
             background-color: #2d382c;
             color: #e2e8e1;
@@ -304,7 +302,7 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">LinkMeet<span>Craft</span></div>
+            <div class="logo">SMP<span>Craft</span></div>
             <div class="nav-tabs">
                 <button class="tab-btn active" onclick="switchTab('donates')">Привилегии</button>
                 <button class="tab-btn" onclick="switchTab('kits')">Наборы (Киты)</button>
@@ -314,7 +312,6 @@
 
     <main class="main-content">
         
-        <!-- ВКЛАДКА: ПРИВИЛЕГИИ -->
         <div id="donates" class="tab-content active">
             <div class="page-title">
                 <h1>Выбор привилегии</h1>
@@ -322,7 +319,6 @@
             </div>
 
             <div class="donation-grid">
-                <!-- LITE -->
                 <div class="card p-lite">
                     <div class="card-header">
                         <h2>Lite</h2>
@@ -334,10 +330,9 @@
                         <li>Смена скина прямо в игре: <b>/skin</b></li>
                         <li>Уникальный стартовый кит <b>/kit lite</b></li>
                     </ul>
-                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Lite" class="buy-btn" target="_blank">Купить статус</a>
+                    <button onclick="buyPrivilege('Lite')" class="buy-btn">Купить статус</button>
                 </div>
 
-                <!-- PREMIUM -->
                 <div class="card p-premium">
                     <div class="card-header">
                         <h2>Premium</h2>
@@ -351,10 +346,9 @@
                         <li>Быстро потушить себя: <b>/ext</b></li>
                         <li>Полезный набор ресурсов <b>/kit premium</b></li>
                     </ul>
-                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Premium" class="buy-btn" target="_blank">Купить статус</a>
+                    <button onclick="buyPrivilege('Premium')" class="buy-btn">Купить статус</button>
                 </div>
 
-                <!-- CREATOR -->
                 <div class="card p-creator">
                     <div class="card-header">
                         <h2>Creator</h2>
@@ -368,10 +362,9 @@
                         <li>Просмотр инвентарей игроков: <b>/invsee</b></li>
                         <li>Уникальный медиа-набор <b>/kit creator</b></li>
                     </ul>
-                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Creator" class="buy-btn" target="_blank">Купить статус</a>
+                    <button onclick="buyPrivilege('Creator')" class="buy-btn">Купить статус</button>
                 </div>
 
-                <!-- ELITE -->
                 <div class="card p-elite">
                     <div class="card-header">
                         <h2>Elite</h2>
@@ -385,10 +378,9 @@
                         <li>Утоление голода командой: <b>/feed</b></li>
                         <li>Элитный набор ресурсов <b>/kit elite</b></li>
                     </ul>
-                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Elite" class="buy-btn" target="_blank">Купить статус</a>
+                    <button onclick="buyPrivilege('Elite')" class="buy-btn">Купить статус</button>
                 </div>
 
-                <!-- DELUXE -->
                 <div class="card p-deluxe">
                     <div class="card-header">
                         <h2>Deluxe</h2>
@@ -403,10 +395,9 @@
                         <li>Крафт и использование <b>легендарных булав</b></li>
                         <li>Топовый набор <b>/kit deluxe</b></li>
                     </ul>
-                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Deluxe" class="buy-btn" target="_blank">Купить статус</a>
+                    <button onclick="buyPrivilege('Deluxe')" class="buy-btn">Купить статус</button>
                 </div>
 
-                <!-- NEXUS -->
                 <div class="card p-nexus">
                     <div class="card-header">
                         <h2>Nexus</h2>
@@ -421,16 +412,15 @@
                         <li>Полный обход кулдаунов на /feed и /heal</li>
                         <li>Самый жирный набор сервера <b>/kit nexus</b></li>
                     </ul>
-                    <a href="https://t.me/tg://user?id=8372556195&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%AF%20%D0%B1%D1%8B%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB%20%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E%20Nexus" class="buy-btn" target="_blank">Купить статус</a>
+                    <button onclick="buyPrivilege('Nexus')" class="buy-btn">Купить статус</button>
                 </div>
             </div>
 
             <div class="coming-soon-banner">
-                🪵 Наш сервер постоянно развивается — очень скоро здесь появится еще больше крутых возможностей и фишек!
+                🪵 Наш сервер постоянно развивается — скоро будет добавлено ещё больше крутых возможностей и привилегий!
             </div>
         </div>
 
-        <!-- ВКЛАДКА: КИТЫ -->
         <div id="kits" class="tab-content">
             <div class="page-title">
                 <h1>Содержимое Кит-Наборов</h1>
@@ -438,7 +428,6 @@
             </div>
 
             <div class="kits-grid">
-                <!-- KIT LITE -->
                 <div class="kit-card">
                     <h3>Набор: Lite</h3>
                     <div class="kit-img-wrapper">
@@ -446,7 +435,6 @@
                     </div>
                 </div>
 
-                <!-- KIT PREMIUM -->
                 <div class="kit-card">
                     <h3>Набор: Premium</h3>
                     <div class="kit-img-wrapper">
@@ -454,7 +442,6 @@
                     </div>
                 </div>
 
-                <!-- KIT CREATOR -->
                 <div class="kit-card">
                     <h3>Набор: Creator</h3>
                     <div class="kit-img-wrapper">
@@ -462,7 +449,6 @@
                     </div>
                 </div>
 
-                <!-- KIT ELITE -->
                 <div class="kit-card">
                     <h3>Набор: Elite</h3>
                     <div class="kit-img-wrapper">
@@ -470,7 +456,6 @@
                     </div>
                 </div>
 
-                <!-- KIT DELUXE -->
                 <div class="kit-card">
                     <h3>Набор: Deluxe</h3>
                     <div class="kit-img-wrapper">
@@ -478,7 +463,6 @@
                     </div>
                 </div>
 
-                <!-- KIT NEXUS -->
                 <div class="kit-card">
                     <h3>Набор: Nexus</h3>
                     <div class="kit-img-wrapper">
@@ -491,22 +475,34 @@
     </main>
 
     <footer>
-        <p>© 2026 LinkMeetCraft SMP. Все права защищены. Сайт разработан для удобного взаимодействия с игроками.</p>
+        <p>© 2026 SMP Сервер. Все права защищены.</p>
     </footer>
 
     <script>
         function switchTab(tabId) {
-            // Скрываем все вкладки
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
 
-            // Деактивируем все кнопки
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Включаем нужную вкладку и кнопку
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
+        }
+
+        function buyPrivilege(name) {
+            const userId = "8372556195";
+            const text = `Привет! Я бы хотел купить привилегию ${name}`;
+            
+            // Копируем готовый текст в буфер обмена, чтобы игрок мог сразу нажать CTRL+V
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`Текст заказа скопирован в буфер обмена! Сейчас откроется чат с создателем — просто вставь сообщение.`);
+                // Перенаправляем по официальному протоколу прямо в личку к ID
+                window.location.href = `tg://openmessage?user_id=${userId}`;
+            }).catch(() => {
+                // Если буфер заблокирован, просто открываем ТГ
+                window.location.href = `tg://openmessage?user_id=${userId}`;
+            });
         }
     </script>
 </body>
