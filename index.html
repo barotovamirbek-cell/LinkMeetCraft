@@ -1,318 +1,956 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkMeetCraft — Магазин Привилегий</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #f4f7f5;
-            --main-green: #5c8f52;
-            --main-green-hover: #4a7541;
-            --card-bg: #ffffff;
-            --text-dark: #2d382c;
-            --text-muted: #6b7c69;
-            --accent-clay: #b87355;
-            --border-radius: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Comfortaa', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Шапка сайта */
-        header {
-            background-color: var(--card-bg);
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(92, 143, 82, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 24px;
-            color: var(--main-green);
-        }
-
-        .logo span {
-            color: var(--accent-clay);
-        }
-
-        .nav-tabs {
-            display: flex;
-            gap: 10px;
-        }
-
-        .tab-btn {
-            background: none;
-            border: 2px solid transparent;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            border-radius: var(--border-radius);
-            transition: all 0.2s ease;
-        }
-
-        .tab-btn:hover {
-            color: var(--main-green);
-            background-color: rgba(92, 143, 82, 0.05);
-        }
-
-        .tab-btn.active {
-            background-color: var(--main-green);
-            color: white;
-        }
-
-        /* Контентная зона */
-        .main-content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            flex-grow: 1;
-            width: 100%;
-        }
-
-        .page-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .page-title h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .page-title p {
-            color: var(--text-muted);
-            font-size: 16px;
-        }
-
-        /* Вкладки */
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Сетка Донатов */
-        .donation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
-            border: 2px solid rgba(92, 143, 82, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(92, 143, 82, 0.12);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-        }
-        .p-lite::before { background-color: #a3c1ad; }
-        .p-premium::before { background-color: #7bc0a3; }
-        .p-creator::before { background-color: #f1a3a3; }
-        .p-elite::before { background-color: #6fb1e4; }
-        .p-deluxe::before { background-color: #b39ddb; }
-        .p-nexus::before { background-color: #ffb74d; }
-
-        .card-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 26px;
-            margin-bottom: 5px;
-        }
-
-        .price {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--accent-clay);
-            margin-bottom: 20px;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .features-list li {
-            margin-bottom: 12px;
-            font-size: 14px;
-            line-height: 1.5;
-            position: relative;
-            padding-left: 24px;
-        }
-
-        .features-list li::before {
-            content: '✔';
-            position: absolute;
-            left: 0;
-            color: var(--main-green);
-            font-weight: bold;
-        }
-
-        .buy-btn {
-            display: block;
-            text-align: center;
-            background-color: var(--main-green);
-            color: white !important;
-            text-decoration: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 16px;
-            transition: background-color 0.2s ease;
-            margin-top: auto;
-            border: none;
-            width: 100%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .buy-btn:hover {
-            background-color: var(--main-green-hover);
-        }
-
-        /* Инфо-блок "Скоро будет больше" */
-        .coming-soon-banner {
-            background-color: rgba(92, 143, 82, 0.08);
-            border: 2px dashed var(--main-green);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            text-align: center;
-            margin-top: 30px;
-            font-weight: 700;
-            color: var(--main-green-hover);
-        }
-
-        /* Сетка Китов */
-        .kits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
-        }
-
-        .kit-card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            border: 2px solid rgba(92, 143, 82, 0.1);
-            text-align: center;
-        }
-
-        .kit-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-
-        .kit-img-wrapper {
-            background-color: var(--bg-color);
-            border-radius: 12px;
-            width: 100%;
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .kit-img-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .kit-card:hover .kit-img-wrapper img {
-            transform: scale(1.05);
-        }
-
-        footer {
-            background-color: #2d382c;
-            color: #e2e8e1;
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 600px) {
-            .nav-container {
-                flex-direction: column;
-            }
-            .page-title h1 {
-                font-size: 28px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Донат-магазин | SMP Server</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=IM+Fell+English:ital@0;1&family=Crimson+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dirt: #6B4226;
+    --stone: #8B8B8B;
+    --oak: #C4903A;
+    --oak-light: #DBA44A;
+    --grass: #5A8A3C;
+    --grass-dark: #3D6128;
+    --sky: #87CEEB;
+    --night: #0D1117;
+    --parchment: #F5E8C8;
+    --parchment-dark: #E8D4A8;
+    --ink: #2C1A0E;
+    --ink-light: #4A2E15;
+    --gold: #FFD700;
+    --gold-dim: #C9A227;
+    --diamond: #5DECF5;
+    --emerald: #50C878;
+    --netherite: #2C2533;
+    --shadow: rgba(0,0,0,0.4);
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--night);
+    color: var(--parchment);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+ 
+  /* ── Pixel starfield background ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 25%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 70%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 50%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(2px 2px at 45% 10%, rgba(255,255,220,0.8) 0%, transparent 100%),
+      radial-gradient(2px 2px at 85% 80%, rgba(255,255,220,0.6) 0%, transparent 100%),
+      linear-gradient(180deg, #0D1117 0%, #111827 40%, #1a1025 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+ 
+  /* ── Moon ── */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 40px;
+    right: 80px;
+    width: 60px;
+    height: 60px;
+    background: #F0E8C0;
+    box-shadow: 0 0 30px rgba(240,232,192,0.4), 0 0 60px rgba(240,232,192,0.15);
+    border-radius: 2px;
+    image-rendering: pixelated;
+    pointer-events: none;
+    z-index: 0;
+  }
+ 
+  .wrap { position: relative; z-index: 1; }
+ 
+  /* ── Header ── */
+  header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+  }
+ 
+  .server-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a1025, #2a1a35);
+    border: 2px solid var(--gold-dim);
+    border-radius: 4px;
+    padding: 4px 16px;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 20px;
+  }
+ 
+  header h1 {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #FFE680 0%, #FFD700 40%, #C9A227 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 2px 8px rgba(201,162,39,0.5));
+    margin-bottom: 12px;
+  }
+ 
+  header p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(245,232,200,0.6);
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+ 
+  /* ── Tabs ── */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 0;
+    position: relative;
+  }
+ 
+  .tab-btn {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,162,39,0.25);
+    border-bottom: none;
+    color: rgba(245,232,200,0.5);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 12px 32px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    top: 1px;
+  }
+ 
+  .tab-btn:first-child { border-radius: 6px 0 0 0; }
+  .tab-btn:last-child  { border-radius: 0 6px 0 0; }
+ 
+  .tab-btn:hover {
+    background: rgba(201,162,39,0.1);
+    color: var(--gold-dim);
+  }
+ 
+  .tab-btn.active {
+    background: rgba(13,17,23,0.95);
+    border-color: rgba(201,162,39,0.5);
+    color: var(--gold);
+    border-bottom: 1px solid rgba(13,17,23,0.95);
+  }
+ 
+  /* ── Tab content ── */
+  .tab-panel {
+    display: none;
+    padding: 0 20px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeUp 0.35s ease;
+  }
+  .tab-panel.active { display: block; }
+ 
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  /* ── Section divider ── */
+  .section-rule {
+    border: none;
+    border-top: 1px solid rgba(201,162,39,0.2);
+    margin: 0 0 48px;
+  }
+ 
+  /* ── Grid ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 0;
+  }
+ 
+  /* ── Rank card ── */
+  .rank-card {
+    position: relative;
+    background: linear-gradient(160deg, rgba(20,14,30,0.95), rgba(13,10,20,0.98));
+    border-radius: 8px;
+    padding: 28px 24px 24px;
+    border: 1px solid;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+  }
+ 
+  .rank-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--card-glow);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+ 
+  .rank-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px var(--card-shadow);
+  }
+ 
+  /* Card themes */
+  .rank-card.lite     { --card-glow: #aaaaaa; --card-shadow: rgba(150,150,150,0.2); border-color: rgba(170,170,170,0.35); }
+  .rank-card.premium  { --card-glow: #4fc3f7; --card-shadow: rgba(79,195,247,0.25); border-color: rgba(79,195,247,0.4); }
+  .rank-card.creator  { --card-glow: #f48fb1; --card-shadow: rgba(244,143,177,0.25); border-color: rgba(244,143,177,0.4); }
+  .rank-card.elite    { --card-glow: #FFD700; --card-shadow: rgba(255,215,0,0.3);   border-color: rgba(255,215,0,0.5); }
+  .rank-card.deluxe   { --card-glow: #FF7043; --card-shadow: rgba(255,112,67,0.3);  border-color: rgba(255,112,67,0.45); }
+  .rank-card.nexus    { --card-glow: #CE93D8; --card-shadow: rgba(206,147,216,0.35); border-color: rgba(206,147,216,0.55); }
+ 
+  /* Shimmer on featured cards */
+  .rank-card.elite::after,
+  .rank-card.nexus::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 40px;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    transform: rotate(20deg);
+    animation: shimmer 4s ease-in-out infinite;
+  }
+  .rank-card.nexus::after { animation-delay: 1.5s; }
+ 
+  @keyframes shimmer {
+    0%   { left: -50%; }
+    60%  { left: 150%; }
+    100% { left: 150%; }
+  }
+ 
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+ 
+  .card-title {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    color: var(--card-glow, var(--parchment));
+  }
+ 
+  .rank-card.lite   .card-title { color: #cfcfcf; }
+  .rank-card.premium .card-title { color: #81d4fa; }
+  .rank-card.creator .card-title { color: #f48fb1; }
+  .rank-card.elite  .card-title { color: #FFD700; }
+  .rank-card.deluxe .card-title { color: #FF8A65; }
+  .rank-card.nexus  .card-title { color: #CE93D8; }
+ 
+  .card-subtitle {
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 14px;
+  }
+ 
+  .card-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(245,232,200,0.7);
+    margin-bottom: 18px;
+  }
+ 
+  .perks-list {
+    list-style: none;
+    margin-bottom: 22px;
+  }
+  .perks-list li {
+    font-size: 0.88rem;
+    padding: 5px 0;
+    color: rgba(245,232,200,0.75);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .perks-list li:last-child { border-bottom: none; }
+  .perks-list li .perk-icon { flex-shrink: 0; margin-top: 1px; }
+ 
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+ 
+  .price-tag {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .price-amount {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 1.9rem;
+    line-height: 1;
+    color: var(--parchment);
+  }
+  .price-note {
+    font-size: 0.72rem;
+    opacity: 0.45;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+ 
+  .buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(201,162,39,0.15), rgba(201,162,39,0.08));
+    border: 1px solid rgba(201,162,39,0.5);
+    border-radius: 4px;
+    color: var(--gold);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .buy-btn:hover {
+    background: linear-gradient(135deg, rgba(201,162,39,0.3), rgba(201,162,39,0.15));
+    border-color: var(--gold);
+    box-shadow: 0 0 16px rgba(201,162,39,0.3);
+    transform: scale(1.03);
+  }
+ 
+  /* Creator special button */
+  .rank-card.creator .buy-btn {
+    border-color: rgba(244,143,177,0.5);
+    color: #f48fb1;
+    background: linear-gradient(135deg, rgba(244,143,177,0.1), rgba(244,143,177,0.05));
+  }
+  .rank-card.creator .buy-btn:hover {
+    border-color: #f48fb1;
+    box-shadow: 0 0 16px rgba(244,143,177,0.3);
+  }
+ 
+  /* Nexus special button */
+  .rank-card.nexus .buy-btn {
+    border-color: rgba(206,147,216,0.6);
+    color: #CE93D8;
+    background: linear-gradient(135deg, rgba(206,147,216,0.12), rgba(206,147,216,0.06));
+  }
+  .rank-card.nexus .buy-btn:hover {
+    border-color: #CE93D8;
+    box-shadow: 0 0 20px rgba(206,147,216,0.4);
+  }
+ 
+  /* ── "Coming soon" banner on card ── */
+  .soon-badge {
+    position: absolute;
+    top: 14px;
+    right: -22px;
+    background: var(--grass);
+    color: #fff;
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 28px;
+    transform: rotate(30deg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+ 
+  /* ── Coming soon footer note ── */
+  .coming-soon-note {
+    text-align: center;
+    margin-top: 48px;
+    padding: 20px 24px;
+    border: 1px dashed rgba(201,162,39,0.25);
+    border-radius: 6px;
+    color: rgba(245,232,200,0.5);
+    font-style: italic;
+    font-size: 0.95rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .coming-soon-note span {
+    display: block;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+ 
+  /* ── Inheritance info ── */
+  .inherit-banner {
+    text-align: center;
+    padding: 14px 20px;
+    background: rgba(90,138,60,0.1);
+    border: 1px solid rgba(90,138,60,0.3);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: rgba(245,232,200,0.6);
+    margin: 0 0 36px;
+    font-style: italic;
+  }
+  .inherit-banner strong { color: var(--emerald); font-style: normal; }
+ 
+  /* ── KITS TAB ── */
+  .kits-intro {
+    text-align: center;
+    padding: 32px 0 36px;
+    color: rgba(245,232,200,0.55);
+    font-size: 1rem;
+    font-style: italic;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+ 
+  .kits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+ 
+  .kit-card {
+    background: rgba(15,12,22,0.9);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .kit-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(201,162,39,0.3);
+  }
+ 
+  .kit-image-area {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #111827, #1c1030);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  /* Pixel-art-ish chest icons as placeholder */
+  .kit-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.5;
+  }
+  .kit-placeholder .chest {
+    width: 56px;
+    height: 44px;
+    position: relative;
+    image-rendering: pixelated;
+  }
+  .kit-placeholder .chest .body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: var(--kit-color, #8B5E3C);
+    border: 3px solid rgba(0,0,0,0.5);
+  }
+  .kit-placeholder .chest .lid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: var(--kit-lid, #A0703D);
+    border: 3px solid rgba(0,0,0,0.5);
+    border-radius: 2px 2px 0 0;
+  }
+  .kit-placeholder .chest .latch {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 12px;
+    background: #FFD700;
+    border: 2px solid rgba(0,0,0,0.5);
+  }
+ 
+  .kit-placeholder span {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(245,232,200,0.4);
+  }
+ 
+  .kit-img-real {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+ 
+  .kit-info {
+    padding: 14px 16px;
+  }
+  .kit-name {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+  .kit-rank-label {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+ 
+  /* Kit color themes */
+  .kit-card.lite   .kit-name { color: #cfcfcf; }
+  .kit-card.premium .kit-name { color: #81d4fa; }
+  .kit-card.creator .kit-name { color: #f48fb1; }
+  .kit-card.elite  .kit-name { color: #FFD700; }
+  .kit-card.deluxe .kit-name { color: #FF8A65; }
+  .kit-card.nexus  .kit-name { color: #CE93D8; }
+ 
+  /* ── Folder structure note ── */
+  .folder-note {
+    background: rgba(13,17,23,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 40px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: rgba(245,232,200,0.6);
+    line-height: 1.8;
+  }
+  .folder-note .folder-title {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(201,162,39,0.6);
+    margin-bottom: 12px;
+  }
+  .folder-note .dir  { color: #81d4fa; }
+  .folder-note .file { color: rgba(245,232,200,0.5); }
+  .folder-note .note { color: rgba(90,200,90,0.6); font-style: italic; }
+ 
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 32px 20px 48px;
+    color: rgba(245,232,200,0.25);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    z-index: 1;
+  }
+ 
+  /* ── Pixel grass bottom strip ── */
+  .grass-strip {
+    width: 100%;
+    height: 8px;
+    background: repeating-linear-gradient(
+      90deg,
+      #5A8A3C 0px, #5A8A3C 8px,
+      #3D6128 8px, #3D6128 16px
+    );
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    image-rendering: pixelated;
+  }
+ 
+  /* ── Section heading ── */
+  .section-heading {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: rgba(245,232,200,0.8);
+    padding: 36px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201,162,39,0.3), transparent);
+  }
+ 
+  /* Responsive */
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .kits-grid  { grid-template-columns: 1fr; }
+    .tab-btn { padding: 10px 16px; font-size: 0.88rem; }
+    header h1 { font-size: 2.2rem; }
+  }
+ 
+  /* Nexus special glow pulse */
+  .rank-card.nexus {
+    animation: nexus-pulse 4s ease-in-out infinite;
+  }
+  @keyframes nexus-pulse {
+    0%,100% { box-shadow: 0 0 0 0 transparent; }
+    50%      { box-shadow: 0 0 24px rgba(206,147,216,0.2); }
+  }
+</style>
 </head>
 <body>
-
-    <header>
-        <div class="nav-container">
-            <div class="logo">LinkMeet<span>Craft</span></div>
-            <div class="nav-tabs">
-                <button id="btn-donates" class="tab-btn active" onclick="switchTab('donates')">Привилегии</button>
-                <button id="btn-kits" class="tab-btn" onclick="switchTab('kits')">Наборы (Киты)</button>
-            </div>
+<div class="wrap">
+ 
+  <!-- Header -->
+  <header>
+    <div class="server-badge">✦ Добро пожаловать ✦</div>
+    <h1>Донат-Магазин</h1>
+    <p>Поддержи сервер — получи привилегии, которые сделают игру ещё интереснее</p>
+ 
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('shop')">🛒 Привилегии</button>
+      <button class="tab-btn" onclick="switchTab('kits')">📦 Стартовые Киты</button>
+    </div>
+  </header>
+ 
+  <!-- ══ SHOP TAB ══ -->
+  <div class="tab-panel active" id="tab-shop">
+    <hr class="section-rule">
+ 
+    <div class="inherit-banner">
+      ⚔️ <strong>Система наследования:</strong> каждая новая привилегия включает в себя все возможности предыдущей. NEXUS = все привилегии сразу.
+    </div>
+ 
+    <div class="cards-grid">
+ 
+      <!-- LITE -->
+      <div class="rank-card lite">
+        <span class="card-icon">⭐</span>
+        <div class="card-title">Lite</div>
+        <div class="card-subtitle">Навсегда · Базовая</div>
+        <p class="card-desc">Базовый набор команд для комфортного выживания. Твой первый шаг в мире привилегий.</p>
+        <ul class="perks-list">
+          <li><span class="perk-icon">↩️</span> Возврат на место смерти и последней ТП (<code>/back</code>)</li>
+          <li><span class="perk-icon">💤</span> Ручной уход в AFK (<code>/afk</code>)</li>
+          <li><span class="perk-icon">🎭</span> Смена скина прямо на сервере</li>
+          <li><span class="perk-icon">🎁</span> Доступ к стартовому киту <strong>Lite</strong></li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag">
+            <div class="price-amount">99 ₽</div>
+            <div class="price-note">Навсегда</div>
+          </div>
+          <a class="buy-btn" href="https://t.me/LinkMeetCraft_official?text=%F0%9F%9B%92+%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!+%D0%AF+%D0%B1%D1%8B+%D1%85%D0%BE%D1%82%D0%B5%D0%BB+%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C+%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E+%E2%AD%90+LITE+%D0%B7%D0%B0+99+%D1%80%D1%83%D0%B1." target="_blank">🛒 Купить</a>
         </div>
-    </header>
-
-    <main class="main-content">
-        
-        <div id="donates" class="tab-content active">
-            <div class="page-title">
-                <h1>Выбор привилегии</h1>
+      </div>
+ 
+      <!-- PREMIUM -->
+      <div class="rank-card premium">
+        <span class="card-icon">👑</span>
+        <div class="card-title">Premium</div>
+        <div class="card-subtitle">Навсегда · Комфорт</div>
+        <p class="card-desc">Идеально для торговцев и шахтёров. Включает всё из Lite и многое сверх того.</p>
+        <ul class="perks-list">
+          <li><span class="perk-icon">🕸</span> Добыча спавнеров шёлковым касанием</li>
+          <li><span class="perk-icon">🪚</span> Мобильный верстак в любом месте (<code>/wb</code>)</li>
+          <li><span class="perk-icon">🔥</span> Мгновенное тушение себя (<code>/ext</code>)</li>
+          <li><span class="perk-icon">🏪</span> 20 слотов на аукционе (было 10)</li>
+          <li><span class="perk-icon">🎁</span> Доступ к киту <strong>Premium</strong></li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag">
+            <div class="price-amount">249 ₽</div>
+            <div class="price-note">Навсегда</div>
+          </div>
+          <a class="buy-btn" href="https://t.me/LinkMeetCraft_official?text=%F0%9F%9B%92+%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!+%D0%AF+%D0%B1%D1%8B+%D1%85%D0%BE%D1%82%D0%B5%D0%BB+%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C+%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E+%F0%9F%91%91+PREMIUM+%D0%B7%D0%B0+249+%D1%80%D1%83%D0%B1." target="_blank">🛒 Купить</a>
+        </div>
+      </div>
+ 
+      <!-- CREATOR -->
+      <div class="rank-card creator">
+        <span class="card-icon">🎬</span>
+        <div class="card-title">Creator</div>
+        <div class="card-subtitle">Медиа-статус · Ютуберам / Тиктокерам</div>
+        <p class="card-desc">Привилегия для контент-мейкеров. Акцент на визуал и контент, без слома экономики.</p>
+        <ul class="perks-list">
+          <li><span class="perk-icon">🎭</span> Смена ника для защиты от стримснайперов (<code>/nick</code>)</li>
+          <li><span class="perk-icon">🌈</span> Цветной и магический текст в чате</li>
+          <li><span class="perk-icon">🖼</span> Загрузка картинок на рамки и карты</li>
+          <li><span class="perk-icon">👁</span> Просмотр инвентаря игроков (без кражи)</li>
+          <li><span class="perk-icon">🎁</span> Уникальный медиа-кит <strong>Creator</strong></li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag">
+            <div class="price-amount">350 ₽</div>
+            <div class="price-note">или бесплатно за стримы/видео</div>
+          </div>
+          <a class="buy-btn" href="https://t.me/LinkMeetCraft_official?text=%F0%9F%9B%92+%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!+%D0%AF+%D0%B1%D1%8B+%D1%85%D0%BE%D1%82%D0%B5%D0%BB+%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C+%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E+%F0%9F%8E%AC+CREATOR." target="_blank">🛒 Купить / Узнать</a>
+        </div>
+      </div>
+ 
+      <!-- ELITE -->
+      <div class="rank-card elite">
+        <span class="card-icon">💎</span>
+        <div class="card-title">Elite</div>
+        <div class="card-subtitle">Навсегда · Тяжёлая артиллерия</div>
+        <p class="card-desc">Включает всё из Premium. Режим полёта, расширенные привилегии и доминирование на рынке.</p>
+        <ul class="perks-list">
+          <li><span class="perk-icon">🦅</span> Режим полёта в любом месте (<code>/fly</code>)</li>
+          <li><span class="perk-icon">🔒</span> До 8 приватов ProtectionStones</li>
+          <li><span class="perk-icon">🍖</span> Утоление голода по команде (<code>/feed</code>)</li>
+          <li><span class="perk-icon">🏪</span> 30 слотов на аукционе</li>
+          <li><span class="perk-icon">🎁</span> Доступ к киту <strong>Elite</strong></li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag">
+            <div class="price-amount">499 ₽</div>
+            <div class="price-note">Навсегда</div>
+          </div>
+          <a class="buy-btn" href="https://t.me/LinkMeetCraft_official?text=%F0%9F%9B%92+%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!+%D0%AF+%D0%B1%D1%8B+%D1%85%D0%BE%D1%82%D0%B5%D0%BB+%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C+%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E+%F0%9F%92%8E+ELITE+%D0%B7%D0%B0+499+%D1%80%D1%83%D0%B1." target="_blank">🛒 Купить</a>
+        </div>
+      </div>
+ 
+      <!-- DELUXE -->
+      <div class="rank-card deluxe">
+        <span class="card-icon">🔥</span>
+        <div class="card-title">Deluxe</div>
+        <div class="card-subtitle">Навсегда · Максимальная автономия</div>
+        <p class="card-desc">Включает всё из Elite. Полная независимость — лечение, хранилище, легендарные булавы.</p>
+        <ul class="perks-list">
+          <li><span class="perk-icon">📦</span> Виртуальный эндер-сундук везде (<code>/ec</code>)</li>
+          <li><span class="perk-icon">💊</span> Исцеление по команде (<code>/heal</code>)</li>
+          <li><span class="perk-icon">🔷</span> Авто-крафт блоков из ресурсов (<code>/condense</code>)</li>
+          <li><span class="perk-icon">🔒</span> До 12 приватов ProtectionStones</li>
+          <li><span class="perk-icon">🏪</span> 40 слотов на аукционе</li>
+          <li><span class="perk-icon">⚔️</span> Крафт и использование легендарных булав</li>
+          <li><span class="perk-icon">🎁</span> Доступ к киту <strong>Deluxe</strong></li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag">
+            <div class="price-amount">799 ₽</div>
+            <div class="price-note">Навсегда</div>
+          </div>
+          <a class="buy-btn" href="https://t.me/LinkMeetCraft_official?text=%F0%9F%9B%92+%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!+%D0%AF+%D0%B1%D1%8B+%D1%85%D0%BE%D1%82%D0%B5%D0%BB+%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C+%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E+%F0%9F%94%A5+DELUXE+%D0%B7%D0%B0+799+%D1%80%D1%83%D0%B1." target="_blank">🛒 Купить</a>
+        </div>
+      </div>
+ 
+      <!-- NEXUS -->
+      <div class="rank-card nexus">
+        <span class="card-icon">🌌</span>
+        <div class="card-title">Nexus</div>
+        <div class="card-subtitle">Навсегда · Высший Статус</div>
+        <p class="card-desc">Включает всё из Deluxe. Легендарный статус лидера сервера — ты неуязвим.</p>
+        <ul class="perks-list">
+          <li><span class="perk-icon">💛</span> <strong>Сохранение инвентаря</strong> после смерти (KeepInventory)</li>
+          <li><span class="perk-icon">🔧</span> Починка вещей и всего инвентаря (<code>/repair all</code>)</li>
+          <li><span class="perk-icon">⚡</span> Обход кулдаунов на <code>/feed</code> и <code>/heal</code></li>
+          <li><span class="perk-icon">🔒</span> До 20 приватов ProtectionStones</li>
+          <li><span class="perk-icon">🏪</span> 50 слотов на аукционе</li>
+          <li><span class="perk-icon">✨</span> +20% к скорости прокачки навыков AuraSkills</li>
+          <li><span class="perk-icon">🎁</span> Самый мощный кит сервера — <strong>Nexus</strong></li>
+        </ul>
+        <div class="card-footer">
+          <div class="price-tag">
+            <div class="price-amount">1 499 ₽</div>
+            <div class="price-note">Навсегда</div>
+          </div>
+          <a class="buy-btn" href="https://t.me/+8372556195?text=%F0%9F%9B%92+%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!+%D0%AF+%D0%B1%D1%8B+%D1%85%D0%BE%D1%82%D0%B5%D0%BB+%D0%BA%D1%83%D0%BF%D0%B8%D1%82%D1%8C+%D0%BF%D1%80%D0%B8%D0%B2%D0%B8%D0%BB%D0%B5%D0%B3%D0%B8%D1%8E+%F0%9F%8C%8C+NEXUS+%D0%B7%D0%B0+1499+%D1%80%D1%83%D0%B1." target="_blank">🛒 Купить</a>
+        </div>
+      </div>
+ 
+    </div><!-- /cards-grid -->
+ 
+    <div class="coming-soon-note">
+      <span>⚒</span>
+      Мы продолжаем развивать магазин — скоро появятся новые привилегии, временные бустеры и сезонные предложения. Следи за обновлениями!
+    </div>
+ 
+  </div><!-- /tab-shop -->
+ 
+  <!-- ══ KITS TAB ══ -->
+  <div class="tab-panel" id="tab-kits">
+    <hr class="section-rule">
+ 
+    <p class="kits-intro">
+      Каждая привилегия открывает уникальный стартовый кит с эксклюзивным снаряжением.<br>
+      Скриншоты добавляются — положи своё изображение в папку <code>kit-images/</code>.
+    </p>
+ 
+    <div class="folder-note">
+      <div class="folder-title">📁 Структура папки для скринов</div>
+      <span class="dir">kit-images/</span><br>
+      <span class="file">&nbsp;&nbsp;├── lite_kit.png</span>&nbsp;&nbsp;<span class="note">← скрин кита Lite</span><br>
+      <span class="file">&nbsp;&nbsp;├── premium_kit.png</span>&nbsp;&nbsp;<span class="note">← скрин кита Premium</span><br>
+      <span class="file">&nbsp;&nbsp;├── creator_kit.png</span>&nbsp;&nbsp;<span class="note">← скрин кита Creator</span><br>
+      <span class="file">&nbsp;&nbsp;├── elite_kit.png</span>&nbsp;&nbsp;<span class="note">← скрин кита Elite</span><br>
+      <span class="file">&nbsp;&nbsp;├── deluxe_kit.png</span>&nbsp;&nbsp;<span class="note">← скрин кита Deluxe</span><br>
+      <span class="file">&nbsp;&nbsp;└── nexus_kit.png</span>&nbsp;&nbsp;<span class="note">← скрин кита Nexus</span>
+    </div>
+ 
+    <div class="kits-grid">
+ 
+      <!-- LITE KIT -->
+      <div class="kit-card lite">
+        <div class="kit-image-area">
+          <img src="kit-images/lite_kit.png" alt="Кит Lite" class="kit-img-real"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="kit-placeholder" style="display:none;">
+            <div class="chest" style="--kit-color:#888;--kit-lid:#aaa;">
+              <div class="lid"></div><div class="body"></div><div class="latch"></div>
+            </div>
+            <span>Скрин скоро</span>
+          </div>
+        </div>
+        <div class="kit-info">
+          <div class="kit-name">Кит Lite</div>
+          <div class="kit-rank-label">⭐ Привилегия Lite</div>
+        </div>
+      </div>
+ 
+      <!-- PREMIUM KIT -->
+      <div class="kit-card premium">
+        <div class="kit-image-area">
+          <img src="kit-images/premium_kit.png" alt="Кит Premium" class="kit-img-real"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="kit-placeholder" style="display:none;">
+            <div class="chest" style="--kit-color:#1565c0;--kit-lid:#1e88e5;">
+              <div class="lid"></div><div class="body"></div><div class="latch"></div>
+            </div>
+            <span>Скрин скоро</span>
+          </div>
+        </div>
+        <div class="kit-info">
+          <div class="kit-name">Кит Premium</div>
+          <div class="kit-rank-label">👑 Привилегия Premium</div>
+        </div>
+      </div>
+ 
+      <!-- CREATOR KIT -->
+      <div class="kit-card creator">
+        <div class="kit-image-area">
+          <img src="kit-images/creator_kit.png" alt="Кит Creator" class="kit-img-real"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="kit-placeholder" style="display:none;">
+            <div class="chest" style="--kit-color:#880e4f;--kit-lid:#c2185b;">
+              <div class="lid"></div><div class="body"></div><div class="latch"></div>
+            </div>
+            <span>Скрин скоро</span>
+          </div>
+        </div>
+        <div class="kit-info">
+          <div class="kit-name">Кит Creator</div>
+          <div class="kit-rank-label">🎬 Медиа-статус Creator</div>
+        </div>
+      </div>
+ 
+      <!-- ELITE KIT -->
+      <div class="kit-card elite">
+        <div class="kit-image-area">
+          <img src="kit-images/elite_kit.png" alt="Кит Elite" class="kit-img-real"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="kit-placeholder" style="display:none;">
+            <div class="chest" style="--kit-color:#f9a825;--kit-lid:#fdd835;">
+              <div class="lid"></div><div class="body"></div><div class="latch"></div>
+            </div>
+            <span>Скрин скоро</span>
+          </div>
+        </div>
+        <div class="kit-info">
+          <div class="kit-name">Кит Elite</div>
+          <div class="kit-rank-label">💎 Привилегия Elite</div>
+        </div>
+      </div>
+ 
+      <!-- DELUXE KIT -->
+      <div class="kit-card deluxe">
+        <div class="kit-image-area">
+          <img src="kit-images/deluxe_kit.png" alt="Кит Deluxe" class="kit-img-real"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="kit-placeholder" style="display:none;">
+            <div class="chest" style="--kit-color:#bf360c;--kit-lid:#e64a19;">
+              <div class="lid"></div><div class="body"></div><div class="latch"></div>
+            </div>
+            <span>Скрин скоро</span>
+          </div>
+        </div>
+        <div class="kit-info">
+          <div class="kit-name">Кит Deluxe</div>
+          <div class="kit-rank-label">🔥 Привилегия Deluxe</div>
+        </div>
+      </div>
+ 
+      <!-- NEXUS KIT -->
+      <div class="kit-card nexus">
+        <div class="kit-image-area">
+          <img src="kit-images/nexus_kit.png" alt="Кит Nexus" class="kit-img-real"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="kit-placeholder" style="display:none;">
+            <div class="chest" style="--kit-color:#4a148c;--kit-lid:#7b1fa2;">
+              <div class="lid"></div><div class="body"></div><div class="latch"></div>
+            </div>
+            <span>Скрин скоро</span>
+          </div>
+        </div>
+        <div class="kit-info">
+          <div class="kit-name">Кит Nexus</div>
+          <div class="kit-rank-label">🌌 Высший Статус Nexus</div>
+        </div>
+      </div>
+ 
+    </div><!-- /kits-grid -->
+ 
+    <div class="coming-soon-note">
+      <span>📸</span>
+      Скрины китов появятся после того, как их добавят в игру. Загрузи изображения в папку <strong>kit-images/</strong> рядом с этим файлом.
+    </div>
+ 
+  </div><!-- /tab-kits -->
+ 
+  <footer>
+    ✦ &nbsp; Все привилегии выдаются вручную через администратора &nbsp; · &nbsp; По вопросам писать в Telegram &nbsp; ✦
+  </footer>
+ 
+</div><!-- /wrap -->
+ 
+<div class="grass-strip"></div>
+ 
+<script>
+  function switchTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
