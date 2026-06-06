@@ -3,652 +3,691 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Донат-магазин | SMP Server</title>
+<title>LinkMeetCraft | Привилегии</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=IM+Fell+English:ital@0;1&family=Crimson+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --dirt: #6B4226;
-    --stone: #8B8B8B;
-    --oak: #C4903A;
-    --oak-light: #DBA44A;
-    --grass: #5A8A3C;
-    --grass-dark: #3D6128;
-    --sky: #87CEEB;
-    --night: #0D1117;
-    --parchment: #F5E8C8;
-    --parchment-dark: #E8D4A8;
-    --ink: #2C1A0E;
-    --ink-light: #4A2E15;
-    --gold: #FFD700;
-    --gold-dim: #C9A227;
-    --diamond: #5DECF5;
-    --emerald: #50C878;
-    --netherite: #2C2533;
-    --shadow: rgba(0,0,0,0.4);
-  }
+:root {
+  --void: #05030d;
+  --deep: #0a0618;
+  --dark: #110c22;
+  --mid: #1a1133;
+  --purple-deep: #1e0a3c;
+  --purple: #6b21a8;
+  --purple-bright: #9333ea;
+  --purple-glow: #c084fc;
+  --purple-light: #e9d5ff;
+  --violet: #7c3aed;
+  --violet-glow: #a78bfa;
+  --gold: #f59e0b;
+  --gold-bright: #fbbf24;
+  --gold-dim: #92400e;
+  --cyan: #22d3ee;
+  --cyan-dim: #0e7490;
+  --parchment: #f5e8d8;
+  --text-muted: rgba(233,213,255,0.5);
+  --text-dim: rgba(233,213,255,0.7);
+  --border-purple: rgba(147,51,234,0.35);
+  --border-gold: rgba(245,158,11,0.4);
+  --glow-purple: rgba(147,51,234,0.25);
+  --glow-gold: rgba(245,158,11,0.2);
+}
  
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
  
-  body {
-    font-family: 'Crimson Pro', Georgia, serif;
-    background: var(--night);
-    color: var(--parchment);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+html { scroll-behavior: smooth; }
  
-  /* ── Pixel starfield background ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 55% 25%, rgba(255,255,255,0.7) 0%, transparent 100%),
-      radial-gradient(1px 1px at 75% 70%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 65% 50%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(2px 2px at 45% 10%, rgba(255,255,220,0.8) 0%, transparent 100%),
-      radial-gradient(2px 2px at 85% 80%, rgba(255,255,220,0.6) 0%, transparent 100%),
-      linear-gradient(180deg, #0D1117 0%, #111827 40%, #1a1025 100%);
-    pointer-events: none;
-    z-index: 0;
-  }
+body {
+  font-family: 'Raleway', sans-serif;
+  background: var(--void);
+  color: var(--parchment);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
  
-  /* ── Moon ── */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 40px;
-    right: 80px;
-    width: 60px;
-    height: 60px;
-    background: #F0E8C0;
-    box-shadow: 0 0 30px rgba(240,232,192,0.4), 0 0 60px rgba(240,232,192,0.15);
-    border-radius: 2px;
-    image-rendering: pixelated;
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ══ ANIMATED BACKGROUND ══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(107,33,168,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 100% 50%, rgba(124,58,237,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 80% at 0% 50%, rgba(30,10,60,0.3) 0%, transparent 50%),
+    linear-gradient(180deg, #05030d 0%, #0a0618 30%, #05030d 100%);
+  pointer-events: none;
+  z-index: 0;
+}
  
-  .wrap { position: relative; z-index: 1; }
+/* Magical particle field */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 8% 12%, rgba(192,132,252,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 23% 45%, rgba(167,139,250,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 41% 8%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 67% 28%, rgba(192,132,252,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 82% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 72%, rgba(167,139,250,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 54% 68%, rgba(192,132,252,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 91% 55%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(2px 2px at 36% 90%, rgba(245,158,11,0.8) 0%, transparent 100%),
+    radial-gradient(2px 2px at 76% 85%, rgba(192,132,252,0.9) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 58% 42%, rgba(34,211,238,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 3% 35%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
  
-  /* ── Header ── */
-  header {
-    text-align: center;
-    padding: 60px 20px 40px;
-    position: relative;
-  }
+@keyframes twinkle {
+  0%   { opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.7; }
+}
  
-  .server-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #1a1025, #2a1a35);
-    border: 2px solid var(--gold-dim);
-    border-radius: 4px;
-    padding: 4px 16px;
-    font-size: 0.75rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold-dim);
-    margin-bottom: 20px;
-  }
+.wrap { position: relative; z-index: 1; }
  
-  header h1 {
-    font-family: 'IM Fell English', Georgia, serif;
-    font-size: clamp(2.4rem, 7vw, 5rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: 2px;
-    background: linear-gradient(180deg, #FFE680 0%, #FFD700 40%, #C9A227 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
-    filter: drop-shadow(0 2px 8px rgba(201,162,39,0.5));
-    margin-bottom: 12px;
-  }
+/* ══ HEADER ══ */
+header {
+  position: relative;
+  text-align: center;
+  padding: 48px 20px 0;
+  overflow: visible;
+}
  
-  header p {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: rgba(245,232,200,0.6);
-    max-width: 500px;
-    margin: 0 auto 32px;
-  }
+/* Top rune arc decoration */
+.rune-arc {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  height: 60px;
+  border: 1px solid rgba(147,51,234,0.25);
+  border-bottom: none;
+  border-radius: 200px 200px 0 0;
+  pointer-events: none;
+}
+.rune-arc::before {
+  content: '✦ ᛟ ✦ ᚨ ✦ ᚱ ✦ ᚾ ✦';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  letter-spacing: 6px;
+  color: rgba(147,51,234,0.5);
+  white-space: nowrap;
+}
  
-  /* ── Tabs ── */
-  .tabs {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    margin-bottom: 0;
-    position: relative;
-  }
+/* Avatar */
+.avatar-wrap {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 20px;
+}
  
-  .tab-btn {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(201,162,39,0.25);
-    border-bottom: none;
-    color: rgba(245,232,200,0.5);
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 12px 32px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-    top: 1px;
-  }
+.avatar-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--purple-bright), var(--gold), var(--purple-bright));
+  box-shadow:
+    0 0 30px rgba(147,51,234,0.6),
+    0 0 60px rgba(147,51,234,0.3),
+    inset 0 0 20px rgba(147,51,234,0.2);
+  animation: ring-spin 8s linear infinite;
+}
  
-  .tab-btn:first-child { border-radius: 6px 0 0 0; }
-  .tab-btn:last-child  { border-radius: 0 6px 0 0; }
+@keyframes ring-spin {
+  0%   { box-shadow: 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.3); }
+  33%  { box-shadow: 0 0 30px rgba(245,158,11,0.5), 0 0 60px rgba(245,158,11,0.25); }
+  66%  { box-shadow: 0 0 30px rgba(34,211,238,0.5), 0 0 60px rgba(34,211,238,0.2); }
+  100% { box-shadow: 0 0 30px rgba(147,51,234,0.6), 0 0 60px rgba(147,51,234,0.3); }
+}
  
-  .tab-btn:hover {
-    background: rgba(201,162,39,0.1);
-    color: var(--gold-dim);
-  }
+.avatar-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
  
-  .tab-btn.active {
-    background: rgba(13,17,23,0.95);
-    border-color: rgba(201,162,39,0.5);
-    color: var(--gold);
-    border-bottom: 1px solid rgba(13,17,23,0.95);
-  }
+.avatar-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, var(--gold), #d97706);
+  border-radius: 50%;
+  border: 2px solid var(--void);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
  
-  /* ── Tab content ── */
-  .tab-panel {
-    display: none;
-    padding: 0 20px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-    animation: fadeUp 0.35s ease;
-  }
-  .tab-panel.active { display: block; }
+/* Logo title */
+.logo-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.9rem, 6vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+  text-decoration: none;
+  display: inline-block;
+}
  
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+.logo-link {
+  word-break: keep-all;
+}
+.logo-link .part-link  { color: #e2e8f0; }
+.logo-link .part-meet  { color: var(--purple-glow); text-shadow: 0 0 20px rgba(192,132,252,0.7); }
+.logo-link .part-craft {
+  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 60%, #a16207 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 6px rgba(245,158,11,0.5));
+}
  
-  /* ── Section divider ── */
-  .section-rule {
-    border: none;
-    border-top: 1px solid rgba(201,162,39,0.2);
-    margin: 0 0 48px;
-  }
+.logo-link:hover .part-link  { text-shadow: 0 0 15px rgba(255,255,255,0.4); }
+.logo-link:hover .part-meet  { text-shadow: 0 0 30px rgba(192,132,252,0.9); }
  
-  /* ── Grid ── */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-    margin-top: 0;
-  }
+.tagline {
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
  
-  /* ── Rank card ── */
-  .rank-card {
-    position: relative;
-    background: linear-gradient(160deg, rgba(20,14,30,0.95), rgba(13,10,20,0.98));
-    border-radius: 8px;
-    padding: 28px 24px 24px;
-    border: 1px solid;
-    overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    cursor: default;
-  }
+/* ══ DIVIDER ══ */
+.magic-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto 0;
+  max-width: 600px;
+  padding: 0 20px;
+}
+.magic-divider::before,
+.magic-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(147,51,234,0.5), transparent);
+}
+.magic-divider .icon {
+  color: var(--purple-glow);
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  opacity: 0.8;
+}
  
-  .rank-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--card-glow);
-    opacity: 0.06;
-    pointer-events: none;
-  }
+/* ══ TABS ══ */
+.tabs-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 32px 20px 0;
+  gap: 4px;
+}
  
-  .rank-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px var(--card-shadow);
-  }
+.tab-btn {
+  position: relative;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(147,51,234,0.2);
+  border-bottom: none;
+  color: var(--text-muted);
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 13px 28px 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-radius: 6px 6px 0 0;
+  top: 1px;
+}
  
-  /* Card themes */
-  .rank-card.lite     { --card-glow: #aaaaaa; --card-shadow: rgba(150,150,150,0.2); border-color: rgba(170,170,170,0.35); }
-  .rank-card.premium  { --card-glow: #4fc3f7; --card-shadow: rgba(79,195,247,0.25); border-color: rgba(79,195,247,0.4); }
-  .rank-card.creator  { --card-glow: #f48fb1; --card-shadow: rgba(244,143,177,0.25); border-color: rgba(244,143,177,0.4); }
-  .rank-card.elite    { --card-glow: #FFD700; --card-shadow: rgba(255,215,0,0.3);   border-color: rgba(255,215,0,0.5); }
-  .rank-card.deluxe   { --card-glow: #FF7043; --card-shadow: rgba(255,112,67,0.3);  border-color: rgba(255,112,67,0.45); }
-  .rank-card.nexus    { --card-glow: #CE93D8; --card-shadow: rgba(206,147,216,0.35); border-color: rgba(206,147,216,0.55); }
+.tab-btn:hover {
+  background: rgba(147,51,234,0.12);
+  color: var(--purple-light);
+  border-color: rgba(147,51,234,0.4);
+}
  
-  /* Shimmer on featured cards */
-  .rank-card.elite::after,
-  .rank-card.nexus::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 40px;
-    height: 200%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-    transform: rotate(20deg);
-    animation: shimmer 4s ease-in-out infinite;
-  }
-  .rank-card.nexus::after { animation-delay: 1.5s; }
+.tab-btn.active {
+  background: rgba(10,6,24,0.95);
+  color: var(--purple-glow);
+  border-color: rgba(147,51,234,0.5);
+  border-bottom: 1px solid rgba(10,6,24,0.95);
+  text-shadow: 0 0 12px rgba(192,132,252,0.5);
+}
  
-  @keyframes shimmer {
-    0%   { left: -50%; }
-    60%  { left: 150%; }
-    100% { left: 150%; }
-  }
+/* ══ TAB PANELS ══ */
+.tab-panel {
+  display: none;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  animation: rise 0.35s ease;
+}
+.tab-panel.active { display: block; }
  
-  .card-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    display: block;
-  }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
  
-  .card-title {
-    font-family: 'IM Fell English', Georgia, serif;
-    font-size: 1.6rem;
-    letter-spacing: 1px;
-    font-weight: 400;
-    margin-bottom: 4px;
-    color: var(--card-glow, var(--parchment));
-  }
+.panel-top-border {
+  border: 1px solid rgba(147,51,234,0.35);
+  border-top: 2px solid rgba(147,51,234,0.5);
+  border-radius: 0 8px 8px 8px;
+  padding: 36px 24px;
+  background: rgba(10,6,24,0.6);
+  backdrop-filter: blur(8px);
+}
  
-  .rank-card.lite   .card-title { color: #cfcfcf; }
-  .rank-card.premium .card-title { color: #81d4fa; }
-  .rank-card.creator .card-title { color: #f48fb1; }
-  .rank-card.elite  .card-title { color: #FFD700; }
-  .rank-card.deluxe .card-title { color: #FF8A65; }
-  .rank-card.nexus  .card-title { color: #CE93D8; }
+/* ══ INHERITANCE BANNER ══ */
+.inherit-banner {
+  text-align: center;
+  padding: 12px 20px;
+  background: rgba(124,58,237,0.08);
+  border: 1px solid rgba(124,58,237,0.25);
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+}
+.inherit-banner strong { color: var(--violet-glow); }
  
-  .card-subtitle {
-    font-size: 0.78rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.5;
-    margin-bottom: 14px;
-  }
+/* ══ RANK GRID ══ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
  
-  .card-desc {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(245,232,200,0.7);
-    margin-bottom: 18px;
-  }
+/* ══ RANK CARD ══ */
+.rank-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(16,10,30,0.95), rgba(10,6,20,0.98));
+  border-radius: 10px;
+  padding: 26px 22px 22px;
+  border: 1px solid var(--card-border, rgba(147,51,234,0.3));
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
  
-  .perks-list {
-    list-style: none;
-    margin-bottom: 22px;
-  }
-  .perks-list li {
-    font-size: 0.88rem;
-    padding: 5px 0;
-    color: rgba(245,232,200,0.75);
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .perks-list li:last-child { border-bottom: none; }
-  .perks-list li .perk-icon { flex-shrink: 0; margin-top: 1px; }
+.rank-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--card-top, linear-gradient(90deg, transparent, rgba(147,51,234,0.6), transparent));
+}
  
-  .card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-  }
+.rank-card::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -20%;
+  width: 50px;
+  height: 180%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+  transform: rotate(25deg);
+  animation: sheen 5s ease-in-out infinite;
+  pointer-events: none;
+}
  
-  .price-tag {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .price-amount {
-    font-family: 'IM Fell English', Georgia, serif;
-    font-size: 1.9rem;
-    line-height: 1;
-    color: var(--parchment);
-  }
-  .price-note {
-    font-size: 0.72rem;
-    opacity: 0.45;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
+@keyframes sheen {
+  0%   { left: -40%; }
+  50%  { left: 140%; }
+  100% { left: 140%; }
+}
  
-  .buy-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, rgba(201,162,39,0.15), rgba(201,162,39,0.08));
-    border: 1px solid rgba(201,162,39,0.5);
-    border-radius: 4px;
-    color: var(--gold);
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 10px 20px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-  .buy-btn:hover {
-    background: linear-gradient(135deg, rgba(201,162,39,0.3), rgba(201,162,39,0.15));
-    border-color: var(--gold);
-    box-shadow: 0 0 16px rgba(201,162,39,0.3);
-    transform: scale(1.03);
-  }
+.rank-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px var(--card-glow, rgba(147,51,234,0.2));
+}
  
-  /* Creator special button */
-  .rank-card.creator .buy-btn {
-    border-color: rgba(244,143,177,0.5);
-    color: #f48fb1;
-    background: linear-gradient(135deg, rgba(244,143,177,0.1), rgba(244,143,177,0.05));
-  }
-  .rank-card.creator .buy-btn:hover {
-    border-color: #f48fb1;
-    box-shadow: 0 0 16px rgba(244,143,177,0.3);
-  }
+/* Card themes */
+.rank-card.lite {
+  --card-border: rgba(160,160,180,0.3);
+  --card-top: linear-gradient(90deg, transparent, rgba(180,180,200,0.5), transparent);
+  --card-glow: rgba(160,160,180,0.15);
+}
+.rank-card.premium {
+  --card-border: rgba(56,189,248,0.35);
+  --card-top: linear-gradient(90deg, transparent, rgba(56,189,248,0.6), transparent);
+  --card-glow: rgba(56,189,248,0.2);
+}
+.rank-card.creator {
+  --card-border: rgba(236,72,153,0.35);
+  --card-top: linear-gradient(90deg, transparent, rgba(236,72,153,0.6), transparent);
+  --card-glow: rgba(236,72,153,0.2);
+}
+.rank-card.elite {
+  --card-border: rgba(245,158,11,0.45);
+  --card-top: linear-gradient(90deg, transparent, rgba(245,158,11,0.7), transparent);
+  --card-glow: rgba(245,158,11,0.25);
+  animation: elite-pulse 4s ease-in-out infinite;
+}
+.rank-card.deluxe {
+  --card-border: rgba(249,115,22,0.4);
+  --card-top: linear-gradient(90deg, transparent, rgba(249,115,22,0.65), transparent);
+  --card-glow: rgba(249,115,22,0.2);
+}
+.rank-card.nexus {
+  --card-border: rgba(192,132,252,0.55);
+  --card-top: linear-gradient(90deg, transparent, rgba(192,132,252,0.8), transparent);
+  --card-glow: rgba(192,132,252,0.3);
+  animation: nexus-pulse 3.5s ease-in-out infinite;
+}
  
-  /* Nexus special button */
-  .rank-card.nexus .buy-btn {
-    border-color: rgba(206,147,216,0.6);
-    color: #CE93D8;
-    background: linear-gradient(135deg, rgba(206,147,216,0.12), rgba(206,147,216,0.06));
-  }
-  .rank-card.nexus .buy-btn:hover {
-    border-color: #CE93D8;
-    box-shadow: 0 0 20px rgba(206,147,216,0.4);
-  }
+@keyframes elite-pulse {
+  0%,100% { box-shadow: none; }
+  50% { box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+}
+@keyframes nexus-pulse {
+  0%,100% { box-shadow: 0 0 0 0 transparent; }
+  50% { box-shadow: 0 0 30px rgba(192,132,252,0.25); }
+}
  
-  /* ── "Coming soon" banner on card ── */
-  .soon-badge {
-    position: absolute;
-    top: 14px;
-    right: -22px;
-    background: var(--grass);
-    color: #fff;
-    font-size: 0.65rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 4px 28px;
-    transform: rotate(30deg);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  }
+.rank-card.nexus:hover { animation: none; }
+.rank-card.elite:hover { animation: none; }
  
-  /* ── Coming soon footer note ── */
-  .coming-soon-note {
-    text-align: center;
-    margin-top: 48px;
-    padding: 20px 24px;
-    border: 1px dashed rgba(201,162,39,0.25);
-    border-radius: 6px;
-    color: rgba(245,232,200,0.5);
-    font-style: italic;
-    font-size: 0.95rem;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .coming-soon-note span {
-    display: block;
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-  }
+/* Card inner */
+.card-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
  
-  /* ── Inheritance info ── */
-  .inherit-banner {
-    text-align: center;
-    padding: 14px 20px;
-    background: rgba(90,138,60,0.1);
-    border: 1px solid rgba(90,138,60,0.3);
-    border-radius: 6px;
-    font-size: 0.88rem;
-    color: rgba(245,232,200,0.6);
-    margin: 0 0 36px;
-    font-style: italic;
-  }
-  .inherit-banner strong { color: var(--emerald); font-style: normal; }
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 3px;
+}
+.rank-card.lite .card-title    { color: #c8c8d8; }
+.rank-card.premium .card-title { color: #7dd3fc; }
+.rank-card.creator .card-title { color: #f9a8d4; }
+.rank-card.elite .card-title   { color: var(--gold-bright); }
+.rank-card.deluxe .card-title  { color: #fb923c; }
+.rank-card.nexus .card-title   { color: var(--purple-glow); text-shadow: 0 0 15px rgba(192,132,252,0.5); }
  
-  /* ── KITS TAB ── */
-  .kits-intro {
-    text-align: center;
-    padding: 32px 0 36px;
-    color: rgba(245,232,200,0.55);
-    font-size: 1rem;
-    font-style: italic;
-    max-width: 560px;
-    margin: 0 auto;
-  }
+.card-subtitle {
+  font-size: 0.68rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 14px;
+}
  
-  .kits-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
+.card-desc {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
  
-  .kit-card {
-    background: rgba(15,12,22,0.9);
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.08);
-    overflow: hidden;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-  }
-  .kit-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(201,162,39,0.3);
-  }
+.perks-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.perks-list li {
+  font-size: 0.82rem;
+  padding: 5px 0;
+  color: rgba(233,213,255,0.72);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(147,51,234,0.08);
+}
+.perks-list li:last-child { border-bottom: none; }
+.perk-icon { flex-shrink: 0; margin-top: 1px; }
  
-  .kit-image-area {
-    width: 100%;
-    aspect-ratio: 92 / 42;
-    background: linear-gradient(135deg, #111827, #1c1030);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
  
-  /* Pixel-art-ish chest icons as placeholder */
-  .kit-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    opacity: 0.5;
-  }
-  .kit-placeholder .chest {
-    width: 56px;
-    height: 44px;
-    position: relative;
-    image-rendering: pixelated;
-  }
-  .kit-placeholder .chest .body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 28px;
-    background: var(--kit-color, #8B5E3C);
-    border: 3px solid rgba(0,0,0,0.5);
-  }
-  .kit-placeholder .chest .lid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: var(--kit-lid, #A0703D);
-    border: 3px solid rgba(0,0,0,0.5);
-    border-radius: 2px 2px 0 0;
-  }
-  .kit-placeholder .chest .latch {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 12px;
-    background: #FFD700;
-    border: 2px solid rgba(0,0,0,0.5);
-  }
+.price-tag { display: flex; flex-direction: column; gap: 2px; }
+.price-amount {
+  font-family: 'Cinzel', serif;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--parchment);
+}
+.price-note {
+  font-size: 0.66rem;
+  opacity: 0.4;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
  
-  .kit-placeholder span {
-    font-size: 0.75rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(245,232,200,0.4);
-  }
+.buy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(147,51,234,0.18), rgba(147,51,234,0.08));
+  border: 1px solid rgba(147,51,234,0.5);
+  border-radius: 6px;
+  color: var(--purple-glow);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.buy-btn:hover {
+  background: linear-gradient(135deg, rgba(147,51,234,0.35), rgba(147,51,234,0.18));
+  border-color: var(--purple-bright);
+  box-shadow: 0 0 20px rgba(147,51,234,0.4);
+  transform: scale(1.04);
+  color: var(--purple-light);
+}
  
-  .kit-img-real {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.rank-card.creator .buy-btn { border-color: rgba(236,72,153,0.45); color: #f9a8d4; background: linear-gradient(135deg, rgba(236,72,153,0.12), rgba(236,72,153,0.05)); }
+.rank-card.creator .buy-btn:hover { border-color: #ec4899; box-shadow: 0 0 20px rgba(236,72,153,0.35); color: #fce7f3; }
+.rank-card.elite .buy-btn { border-color: rgba(245,158,11,0.5); color: var(--gold-bright); background: linear-gradient(135deg, rgba(245,158,11,0.14), rgba(245,158,11,0.06)); }
+.rank-card.elite .buy-btn:hover { border-color: var(--gold-bright); box-shadow: 0 0 20px rgba(245,158,11,0.4); }
+.rank-card.nexus .buy-btn { border-color: rgba(192,132,252,0.6); color: var(--purple-glow); background: linear-gradient(135deg, rgba(192,132,252,0.15), rgba(192,132,252,0.06)); }
+.rank-card.nexus .buy-btn:hover { border-color: var(--purple-glow); box-shadow: 0 0 24px rgba(192,132,252,0.45); }
  
-  .kit-info {
-    padding: 14px 16px;
-  }
-  .kit-name {
-    font-family: 'IM Fell English', Georgia, serif;
-    font-size: 1.1rem;
-    margin-bottom: 4px;
-  }
-  .kit-rank-label {
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.45;
-  }
+/* ══ KITS SECTION ══ */
+.kits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
  
-  /* Kit color themes */
-  .kit-card.lite   .kit-name { color: #cfcfcf; }
-  .kit-card.premium .kit-name { color: #81d4fa; }
-  .kit-card.creator .kit-name { color: #f48fb1; }
-  .kit-card.elite  .kit-name { color: #FFD700; }
-  .kit-card.deluxe .kit-name { color: #FF8A65; }
-  .kit-card.nexus  .kit-name { color: #CE93D8; }
+.kit-card {
+  background: rgba(12,8,22,0.9);
+  border-radius: 10px;
+  border: 1px solid rgba(147,51,234,0.18);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.kit-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(147,51,234,0.4);
+  box-shadow: 0 12px 36px rgba(107,33,168,0.2);
+}
  
-  /* ── Folder structure note ── */
-  .folder-note {
-    background: rgba(13,17,23,0.8);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 6px;
-    padding: 20px 24px;
-    margin: 40px 0;
-    font-family: 'Courier New', monospace;
-    font-size: 0.82rem;
-    color: rgba(245,232,200,0.6);
-    line-height: 1.8;
-  }
-  .folder-note .folder-title {
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(201,162,39,0.6);
-    margin-bottom: 12px;
-  }
-  .folder-note .dir  { color: #81d4fa; }
-  .folder-note .file { color: rgba(245,232,200,0.5); }
-  .folder-note .note { color: rgba(90,200,90,0.6); font-style: italic; }
+.kit-image-area {
+  width: 100%;
+  aspect-ratio: 92/42;
+  background: linear-gradient(135deg, rgba(16,10,28,0.9), rgba(26,17,51,0.95));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
  
-  /* ── Footer ── */
-  footer {
-    text-align: center;
-    padding: 32px 20px 48px;
-    color: rgba(245,232,200,0.25);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    position: relative;
-    z-index: 1;
-  }
+.kit-image-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(107,33,168,0.1), transparent 70%);
+  pointer-events: none;
+}
  
-  /* ── Pixel grass bottom strip ── */
-  .grass-strip {
-    width: 100%;
-    height: 8px;
-    background: repeating-linear-gradient(
-      90deg,
-      #5A8A3C 0px, #5A8A3C 8px,
-      #3D6128 8px, #3D6128 16px
-    );
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    image-rendering: pixelated;
-  }
+.kit-img-real {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.kit-card:hover .kit-img-real { transform: scale(1.03); }
  
-  /* ── Section heading ── */
-  .section-heading {
-    font-family: 'IM Fell English', Georgia, serif;
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: rgba(245,232,200,0.8);
-    padding: 36px 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .section-heading::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(201,162,39,0.3), transparent);
-  }
+.kit-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
  
-  /* Responsive */
-  @media (max-width: 700px) {
-    .cards-grid { grid-template-columns: 1fr; }
-    .kits-grid  { grid-template-columns: 1fr; }
-    .tab-btn { padding: 10px 16px; font-size: 0.88rem; }
-    header h1 { font-size: 2.2rem; }
-  }
+.kit-placeholder .chest-ico {
+  font-size: 2.4rem;
+  opacity: 0.4;
+}
  
-  /* Nexus special glow pulse */
-  .rank-card.nexus {
-    animation: nexus-pulse 4s ease-in-out infinite;
-  }
-  @keyframes nexus-pulse {
-    0%,100% { box-shadow: 0 0 0 0 transparent; }
-    50%      { box-shadow: 0 0 24px rgba(206,147,216,0.2); }
-  }
+.kit-info {
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.kit-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+ 
+.kit-rank-label {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+ 
+.kit-card.lite .kit-name    { color: #c8c8d8; }
+.kit-card.premium .kit-name { color: #7dd3fc; }
+.kit-card.creator .kit-name { color: #f9a8d4; }
+.kit-card.elite .kit-name   { color: var(--gold-bright); }
+.kit-card.deluxe .kit-name  { color: #fb923c; }
+.kit-card.nexus .kit-name   { color: var(--purple-glow); }
+ 
+/* ══ FOOTER ══ */
+footer {
+  text-align: center;
+  padding: 28px 20px 44px;
+  color: rgba(192,132,252,0.25);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(147,51,234,0.1);
+  position: relative;
+  z-index: 1;
+}
+ 
+footer a {
+  color: rgba(192,132,252,0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+footer a:hover { color: var(--purple-glow); }
+ 
+/* ══ BOTTOM GLOW STRIP ══ */
+.bottom-strip {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--purple-bright), var(--violet), var(--purple-bright), transparent);
+  box-shadow: 0 0 20px rgba(147,51,234,0.6), 0 0 40px rgba(147,51,234,0.3);
+  z-index: 10;
+  animation: strip-pulse 3s ease-in-out infinite;
+}
+@keyframes strip-pulse {
+  0%,100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+ 
+/* ══ RESPONSIVE ══ */
+@media (max-width: 700px) {
+  .cards-grid { grid-template-columns: 1fr; }
+  .kits-grid  { grid-template-columns: 1fr; }
+  .tab-btn    { padding: 11px 16px; font-size: 0.68rem; letter-spacing: 1px; }
+  .panel-top-border { padding: 24px 16px; }
+  .logo-title { font-size: 1.7rem; }
+}
 </style>
 </head>
+ 
 <body>
 <div class="wrap">
  
-  <!-- Header -->
-  <header>
-    <div class="server-badge">✦ Добро пожаловать ✦</div>
-    <h1>Донат-Магазин</h1>
-    <p>Поддержи сервер — получи привилегии, которые сделают игру ещё интереснее</p>
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="rune-arc"></div>
  
-    <!-- Tabs -->
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('shop')">🛒 Привилегии</button>
-      <button class="tab-btn" onclick="switchTab('kits')">📦 Стартовые Киты</button>
+  <!-- Avatar (left-aligned, using kit-images/LinkMeetCraft.png which is the avatar in the repo) -->
+  <div class="avatar-wrap">
+    <div class="avatar-ring">
+      <img src="kit-images/LinkMeetCraft.png"
+           alt="LinkMeetCraft"
+           onerror="this.onerror=null; this.src='kit-images/lite_kit.png';">
     </div>
-  </header>
+    <div class="avatar-badge">🐉</div>
+  </div>
  
-  <!-- ══ SHOP TAB ══ -->
-  <div class="tab-panel active" id="tab-shop">
-    <hr class="section-rule">
+  <div style="margin-bottom:6px;">
+    <a href="https://t.me/LinkMeetCraft_official" target="_blank" class="logo-title logo-link" style="text-decoration:none;">
+      <span class="part-link">Link</span><span class="part-meet">Meet</span><span class="part-craft">Craft</span>
+    </a>
+  </div>
+ 
+  <p class="tagline">Привилегии · Маг и Дракон</p>
+ 
+  <div class="magic-divider">
+    <span class="icon">✦ ᛟ ✦ ᚨ ✦</span>
+  </div>
+ 
+  <!-- Tabs -->
+  <div class="tabs-wrap">
+    <button class="tab-btn active" onclick="switchTab('shop', event)">⚔ Привилегии</button>
+    <button class="tab-btn" onclick="switchTab('kits', event)">📦 Киты</button>
+  </div>
+</header>
+ 
+<!-- ══ SHOP TAB ══ -->
+<div class="tab-panel active" id="tab-shop">
+  <div class="panel-top-border">
  
     <div class="inherit-banner">
-      ⚔️ <strong>Система наследования:</strong> каждая новая привилегия включает в себя все возможности предыдущей. NEXUS = все привилегии сразу.
+      ⚔️ <strong>Система наследования:</strong> каждая новая привилегия включает все возможности предыдущей — NEXUS = все привилегии сразу
     </div>
  
     <div class="cards-grid">
@@ -789,23 +828,12 @@
       </div>
  
     </div><!-- /cards-grid -->
+  </div><!-- /panel-top-border -->
+</div><!-- /tab-shop -->
  
-    <div class="coming-soon-note">
-      <span>⚒</span>
-      Мы продолжаем развивать магазин — скоро появятся новые привилегии, временные бустеры и сезонные предложения. Следи за обновлениями!
-    </div>
- 
-  </div><!-- /tab-shop -->
- 
-  <!-- ══ KITS TAB ══ -->
-  <div class="tab-panel" id="tab-kits">
-    <hr class="section-rule">
- 
-    <p class="kits-intro">
-      Каждая привилегия открывает уникальный стартовый кит с эксклюзивным снаряжением.<br>
-      Скриншоты появятся совсем скоро — следи за обновлениями!
-    </p>
- 
+<!-- ══ KITS TAB ══ -->
+<div class="tab-panel" id="tab-kits">
+  <div class="panel-top-border">
     <div class="kits-grid">
  
       <!-- LITE KIT -->
@@ -814,15 +842,12 @@
           <img src="kit-images/lite_kit.png" alt="Кит Lite" class="kit-img-real"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="kit-placeholder" style="display:none;">
-            <div class="chest" style="--kit-color:#888;--kit-lid:#aaa;">
-              <div class="lid"></div><div class="body"></div><div class="latch"></div>
-            </div>
-            <span>Скрин скоро</span>
+            <div class="chest-ico">🪣</div>
           </div>
         </div>
         <div class="kit-info">
           <div class="kit-name">Кит Lite</div>
-          <div class="kit-rank-label">⭐ Привилегия Lite</div>
+          <div class="kit-rank-label">⭐ Lite</div>
         </div>
       </div>
  
@@ -832,15 +857,12 @@
           <img src="kit-images/premium_kit.png" alt="Кит Premium" class="kit-img-real"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="kit-placeholder" style="display:none;">
-            <div class="chest" style="--kit-color:#1565c0;--kit-lid:#1e88e5;">
-              <div class="lid"></div><div class="body"></div><div class="latch"></div>
-            </div>
-            <span>Скрин скоро</span>
+            <div class="chest-ico">📦</div>
           </div>
         </div>
         <div class="kit-info">
           <div class="kit-name">Кит Premium</div>
-          <div class="kit-rank-label">👑 Привилегия Premium</div>
+          <div class="kit-rank-label">👑 Premium</div>
         </div>
       </div>
  
@@ -850,15 +872,12 @@
           <img src="kit-images/creator_kit.png" alt="Кит Creator" class="kit-img-real"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="kit-placeholder" style="display:none;">
-            <div class="chest" style="--kit-color:#880e4f;--kit-lid:#c2185b;">
-              <div class="lid"></div><div class="body"></div><div class="latch"></div>
-            </div>
-            <span>Скрин скоро</span>
+            <div class="chest-ico">🎬</div>
           </div>
         </div>
         <div class="kit-info">
           <div class="kit-name">Кит Creator</div>
-          <div class="kit-rank-label">🎬 Медиа-статус Creator</div>
+          <div class="kit-rank-label">🎬 Creator</div>
         </div>
       </div>
  
@@ -868,15 +887,12 @@
           <img src="kit-images/elite_kit.png" alt="Кит Elite" class="kit-img-real"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="kit-placeholder" style="display:none;">
-            <div class="chest" style="--kit-color:#f9a825;--kit-lid:#fdd835;">
-              <div class="lid"></div><div class="body"></div><div class="latch"></div>
-            </div>
-            <span>Скрин скоро</span>
+            <div class="chest-ico">💎</div>
           </div>
         </div>
         <div class="kit-info">
           <div class="kit-name">Кит Elite</div>
-          <div class="kit-rank-label">💎 Привилегия Elite</div>
+          <div class="kit-rank-label">💎 Elite</div>
         </div>
       </div>
  
@@ -886,15 +902,12 @@
           <img src="kit-images/deluxe_kit.png" alt="Кит Deluxe" class="kit-img-real"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="kit-placeholder" style="display:none;">
-            <div class="chest" style="--kit-color:#bf360c;--kit-lid:#e64a19;">
-              <div class="lid"></div><div class="body"></div><div class="latch"></div>
-            </div>
-            <span>Скрин скоро</span>
+            <div class="chest-ico">🔥</div>
           </div>
         </div>
         <div class="kit-info">
           <div class="kit-name">Кит Deluxe</div>
-          <div class="kit-rank-label">🔥 Привилегия Deluxe</div>
+          <div class="kit-rank-label">🔥 Deluxe</div>
         </div>
       </div>
  
@@ -904,42 +917,36 @@
           <img src="kit-images/nexus_kit.png" alt="Кит Nexus" class="kit-img-real"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div class="kit-placeholder" style="display:none;">
-            <div class="chest" style="--kit-color:#4a148c;--kit-lid:#7b1fa2;">
-              <div class="lid"></div><div class="body"></div><div class="latch"></div>
-            </div>
-            <span>Скрин скоро</span>
+            <div class="chest-ico">🌌</div>
           </div>
         </div>
         <div class="kit-info">
           <div class="kit-name">Кит Nexus</div>
-          <div class="kit-rank-label">🌌 Высший Статус Nexus</div>
+          <div class="kit-rank-label">🌌 Nexus</div>
         </div>
       </div>
  
     </div><!-- /kits-grid -->
+  </div><!-- /panel-top-border -->
+</div><!-- /tab-kits -->
  
-    <div class="coming-soon-note">
-      <span>📸</span>
-      Скрины китов скоро появятся — следи за обновлениями!
-    </div>
- 
-  </div><!-- /tab-kits -->
- 
-  <footer>
-    ✦ &nbsp; Все привилегии выдаются вручную через администратора &nbsp; · &nbsp; По вопросам писать в Telegram &nbsp; ✦
-  </footer>
+<footer>
+  ✦ &nbsp; Привилегии выдаются через Telegram &nbsp;·&nbsp;
+  <a href="https://t.me/LinkMeetCraft_official" target="_blank">@LinkMeetCraft_official</a>
+  &nbsp; ✦
+</footer>
  
 </div><!-- /wrap -->
  
-<div class="grass-strip"></div>
+<div class="bottom-strip"></div>
  
 <script>
-  function switchTab(name) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    event.target.classList.add('active');
-  }
+function switchTab(name, event) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+}
 </script>
 </body>
 </html>
